@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* Reset default margin and padding */
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        li,
+        footer {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+
+            padding: 0;
+
+            background: linear-gradient(rgb(13, 3, 154), rgb(58, 0, 108), rgb(31, 0, 48));
+
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 1.6;
+
+
+        }
+
+        h2 {
+            color: azure;
+            text-shadow: silver -2px -1px;
+            text-align: center;
+        }
+
+
+
+
+        .grid-container {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-rows: auto;
+
+            grid-gap: 20px;
+            grid-row-gap: 100px;
+
+            padding: 20px;
+
+            padding-top: 20%;
+
+            margin-left: 10%;
+            margin-right: 10%;
+
+
+            text-align: left;
+
+
+
+
+            color: silver;
+
+        }
+
+
+
+        .grid-item {
+
+            border: 1px solid #cccccc53;
+
+            background-color: rgba(47, 79, 79, 0.442);
+            padding: 4%;
+
+
+        }
+
+
+
+        .header {
+            grid-column: 1 / span 4;
+            background-color: #333;
+            padding: 1rem;
+            color: azure;
+            text-shadow: silver -1px -1px;
+            text-align: center;
+            position: fixed;
+            height: 14%;
+            width: 100%;
+            margin: 0;
+        }
+
+        .footer {
+            border-style: none;
+            grid-column: 1 / span 4;
+            background-color: #3333332c;
+            color: #fff;
+            padding-top: 1rem;
+            text-align: center;
+
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff9900;
+        }
+
+        .overview {
+            grid-column: 1 / span 4;
+        }
+
+        .timeline {
+            grid-column: 1 / span 4;
+
+        }
+
+        .protocols {
+            grid-column: 1 / span 4;
+
+        }
+
+        .architecture {
+            grid-column: 1 / span 4;
+
+        }
+
+        .image {
+            grid-column: 3 / span 1;
+
+        }
+
+        .client-side {
+            grid-column: 1 / span 2;
+
+        }
+
+
+
+        .server-side {
+
+            grid-column: 3 / span 2;
+
+
+        }
+
+        .comparison {
+            grid-column: 1 / span 4;
+
+        }
+
+
+        .scene {
+            position: relative;
+            height: 100%;
+            background: linear-gradient(rgb(13, 3, 154), rgb(58, 0, 108), rgb(31, 0, 48));
+            overflow-x: hidden;
+
+        }
+
+        .dark .scene {
+            background-color: #333;
+            background: linear-gradient(rgba(161, 0, 248, 0.296), rgba(23, 0, 196, 0.29)), rgba(155, 33, 222, 0.279);
+
+        }
+
+        .dark .grid-container {
+            color: rgb(0, 221, 255);
+        }
+
+        .dark h2,
+        .dark a,
+        .dark h1 {
+            color: blue;
+            text-shadow: rgb(0, 221, 255) -1px -1px;
+        }
+        .dark .header{
+            background-color: rgba(47, 79, 79, 0.442);
+        }
+
+        .blackhole {
+            position: absolute;
+            top: 60%;
+            left: 75%;
+            transform: translateX(-5%);
+            width: 200px;
+            height: 200px;
+            background: #ffffff43;
+            border-radius: 50%;
+            box-shadow: 0 0 50px #ffffff78;
+            cursor: pointer;
+            transition: 0.8s;
+
+        }
+
+        .dark .blackhole {
+            left: 25%;
+        }
+
+        .dark .blackhole::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background: rgba(4, 0, 128, 0.174);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(0, 255, 229, 0.445);
+
+        }
+
+        .bg {
+            position: absolute;
+
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: url(spaceBG.jpg);
+
+        }
+
+        .meteor1 {
+            position: absolute;
+            left: -300px;
+            bottom: 100px;
+            max-width: 200px;
+            max-height: 200px;
+            z-index: 20;
+            animation: meteor1 6s linear infinite;
+
+        }
+
+        @keyframes meteor1 {
+            0% {
+                transform: translateX(0px);
+
+            }
+
+            90%,
+            100% {
+                transform: translateX(calc(100vw + 400px));
+
+            }
+        }
+
+        .meteor2 {
+
+            position: absolute;
+            right: -100px;
+            bottom: 300px;
+            max-width: 200px;
+            min-height: 200px;
+            z-index: 10;
+            animation: meteor2 7s linear infinite;
+        }
+
+        @keyframes meteor2 {
+            0% {
+                transform: translateX(0px) rotateY(180deg);
+            }
+
+            90%,
+            100% {
+                transform: translateX(calc(-100vw + -200px)) rotateY(180deg);
+            }
+        }
+    </style>
+
+</head>
+
+
+
+<body class="bg">
+
+    <script>
+        function resizeText() {
+            const windowWidth = window.innerWidth;
+            const baseFontSize = 2;
+
+            const newSize = baseFontSize + (windowWidth / 100);
+
+            document.getElementsByTagName("body").style.fontSize = newSize + "rem";
+        }
+
+
+        window.onload = resizeText;
+        window.onresize = resizeText;
+    </script>
+
+
+
+    <div class="grid-item header">
+
+        <!-- Header/Nav content here -->
+        <header>
+            <h1>Web Programming Assignment</h1>
+            <nav>
+                <ul>
+                    <li><a href="#heading1">Overview of the World Wide Web</a></li>
+                    <li><a href="#heading2">History of the Internet</a></li>
+                    <li><a href="#heading3">Internet Protocols</a></li>
+                    <li><a href="#heading4">Web Application Architecture</a></li>
+                    <li><a href="#heading5">Client Side Engineering</a></li>
+                    <li><a href="#heading6">Server side Engineering</a></li>
+                    <li><a href="#heading7">Comparison table</a></li>
+
+                </ul>
+            </nav>
+        </header>
+
+
+    </div>
+    <section class="scene">
+        <div class="bg">
+            <img src="meteor.png" class="meteor1">
+            <img src="meteor.png" class="meteor2">
+        </div>
+        <div class="blackhole">
+            <p style="text-align: center;padding-top: 50%;color: aqua;">click me</p>
+        </div>
+    </section>
+
+    <div class="grid-container">
+
+
+        <div class="grid-item overview">
+            <a id="heading1">
+                <h2>The Overview of Internet</h2>
+            </a>
+            <p>The World Wide Web (WWW), commonly known as the web, is a vast interconnected network of information and
+                resources that is accessible via the internet. It has fundamentally transformed the way people interact,
+                communicate, and share information globally. The web is a dynamic platform that hosts a wide variety of
+                content, ranging from text and images to videos and applications.</p>
+
+            <h3>Components of the Web:</h3>
+
+            <ul>
+
+                <li>Web Pages: These are individual documents containing various forms of content, such as text, images,
+                    videos, and interactive elements.</li>
+
+                <li>Hyperlinks: Hyperlinks, often referred to simply as links, connect web pages together. They allow
+                    users to navigate from one page to another by clicking on highlighted or underlined text or images.
+                </li>
+
+                <li>Uniform Resource Locators: URLs are web addresses that provide a unique address for each web page or
+                    resource on the internet. They consist of the protocol (e.g., "http" or "https"), domain name, and
+                    specific path to the resource.</li>
+
+                <li>Web Browsers: Web browsers like Chrome, Firefox, Safari, and Edge enable users to access and view
+                    web content. They interpret HTML (Hypertext Markup Language) documents and render them as visible
+                    web pages.</li>
+
+            </ul>
+
+            <h3>Key Concepts:</h3>
+
+            <ul>
+
+                <li>Hypertext: Hypertext is the foundation of the web. It refers to text that contains hyperlinks,
+                    allowing users to jump to related content with a single click.</li>
+
+                <li>HTML: HTML is the standard markup language used to create web pages. (“Common client-side web
+                    technologies | Microsoft Learn”) (“Common client-side web technologies | Microsoft Learn”) It
+                    structures content and defines how elements should be displayed in browsers.</li>
+
+                <li>Web Servers: Web servers store web pages and resources and deliver them to users' browsers upon
+                    request. Web Hosting: Websites are hosted on servers, either locally or through web hosting
+                    services, making them accessible to users</li>
+
+                <li>Web Development: Web development involves creating and maintaining websites. It encompasses
+                    front-end development (user interface) and back-end development (server-side logic).</li>
+
+                <li>Web Standards: Organizations like the World Wide Web Consortium (W3C) establish guidelines and
+                    standards to ensure consistency and compatibility across different web technologies.</li>
+
+            </ul>
+
+            <h3>Importance:</h3>
+
+            <ul>
+
+                <li>Information Access: The web provides access to an enormous amount of information on virtually any
+                    topic, empowering users to learn, research, and stay informed.</li>
+
+                <li>Communication: The web facilitates communication through email, social media, messaging platforms,
+                    and real-time collaboration tools.</li>
+
+                <li>E-Commerce: E-commerce platforms enable online shopping, payment processing, and global trade</li>
+
+                <li>Entertainment and Media: The web hosts a wide range of entertainment content, including streaming
+                    videos, music, games, and interactive experiences.</li>
+
+                <li>Education and Learning: Online courses, tutorials, and educational resources are easily accessible
+                    on the web.</li>
+
+                <li>Business and Marketing: The web plays a crucial role in business promotion, marketing, and brand
+                    building.</li>
+
+                </br>
+
+            </ul>
+
+            <p>In conclusion, the World Wide Web has become an integral part of modern society, reshaping how
+                information is disseminated, communication occurs, and businesses operate. Its dynamic and
+                interconnected nature continues to evolve, driving technological innovation and transforming various
+                aspects of human interaction and culture.</p>
+
+        </div>
+        <div class="grid-item timeline">
+
+            <a id="heading2">
+                <h2>The Timeline</h2>
+            </a>
+            <dl>
+                <dt>PRECURSORS AND FOUNDATIONS (1960s - 1970s)</dt>
+                <dd>
+                    <ul>
+                        <li>1960s: The concept of packet-switching, which allowed data to be broken into packets
+                            and
+                            transmitted across networks, emerged as a solution for efficient data transfer.</li>
+                        <li>1969: The U.S. Department of Defence’s Advanced Research Projects Agency (ARPA)
+                            established ARPANET, connecting computers at various research institutions.</li>
+                        <li>1970s: The creation of protocols like TCP/IP (Transmission Control Protocol/Internet
+                            Protocol) laid the groundwork for standardized data transmission and ensured
+                            interoperability between diverse networks.</li>
+                    </ul>
+                </dd>
+
+                <dt>BIRTH OF THE WORLD WIDE WEB (1980s - 1990s)</dt>
+                <dd>
+                    <ul>
+                        <li>1983: ARPANET adopts TCP/IP, leading to the transition from proprietary networking
+                            protocols to a unified, interconnected network.</li>
+                        <li>1989: Tim Berners-Lee's proposal for the World Wide Web introduces the concept of
+                            hypertext and a global network of linked documents.</li>
+                        <li>1990: Tim Berners-Lee creates the first web browser and web server, allowing the
+                            retrieval and display of web pages.</li>
+                        <li>1993: The introduction of the graphical web browser Mosaic popularizes web browsing
+                            and
+                            makes the web more accessible to non-technical users.</li>
+                    </ul>
+                </dd>
+
+                <dt>COMMERCIALIZATION AND EXPANSION (1990s - EARLY 2000s)</dt>
+                <dd>
+                    <ul>
+                        <li>1995: The National Science Foundation's NSFNET is decommissioned, marking the
+                            transition
+                            from government-funded research networks to commercially operated networks.</li>
+                        <li>Late 1990s: The dot-com bubble sees rapid growth in internet-based companies,
+                            e-commerce, and online services.</li>
+                        <li>Early 2000s: The proliferation of broadband internet access accelerates as dial-up
+                            connections become less common, enabling faster content delivery and multimedia
+                            streaming.</li>
+                    </ul>
+                </dd>
+                <p style="text-align: center;">
+                    <a href="https://za.pinterest.com/pin/505529126900272979/"><img src="timeline.jpg" alt="Timeline"
+                            width="80%" height="10%"></a>
+                </p>
+        </div>
+
+        <div class="grid-item protocols">
+
+            <!-- Internet Protocols content here -->
+
+
+            <a id="heading3">
+                <h2>Internet Protocols</h2>
+            </a>
+            <p>Internet protocols are rules and conventions that are used to set a standard. They define how
+                data is
+                transmitted, received, and exchanged across computer networks via the Internet. By providing a
+                common language for data transmission and defining procedures for various tasks, effective
+                device
+                communication is ensured. The main purpose of internet protocols was to enable seamless and
+                reliable
+                communication between diverse devices. This means that the devices can communicate regardless of
+                their location, make, or model.</p>
+
+            <ul>
+                <li>TCP (Transmission Control Protocol) / IP (Internet Protocol): TCP breaks data into packets
+                    which
+                    ensures delivery that is reliable and a data flow that is managed. The IP manages the
+                    addressing
+                    and routing of data packets.</li>
+                <li>HTTP (Hypertext Transfer Protocol): HTTP is used to transmit web pages and resources between
+                    web
+                    browsers and servers. it is commonly used for accessing websites and retrieving web content.
+                </li>
+                <li>HTTPS (Hypertext Transfer Protocol Secure): HTTPS is used to add a layer of security to
+                    HTTP. It
+                    does this by encrypting data exchanged between web browsers and servers. It is commonly used
+                    for
+                    secure online transactions, login forms, and other data exchanges which occur and are
+                    sensitive.
+                </li>
+                <li>SMTP (Simple Mail Transfer Protocol): SMTP is used to facilitate sending and receiving of
+                    emails
+                    between email clients and servers.</li>
+                <li>SFTP- A more secure version of FTP that uses a Secure Shell to encrypt the data during the
+                    transfer.</li>
+                <li>PPP- The protocol creates direct connections between two devices in order to exchange
+                    information.</li>
+                <li>POP3 (Post Office Protocol 3): POP3 allows email clients to retrieve messages from a mail
+                    server
+                    and download it to the device of the user. It is also used to manage email messages.</li>
+                <li>IMAP (Internet Message Access Protocol): This protocol is like POP3. It allows email clients
+                    to
+                    retrieve messages from a server. This protocol keeps messages on the server which allows for
+                    better synchronization. The email messages can be accessed across multiple devices.</li>
+                <li>FTP (File Transfer Protocol): FTP is used for transferring files between computers. The
+                    transfer
+                    occurs over a network. There are commands that can be used, such as upload, download and
+                    manage
+                    files.</li>
+                <li>DNS (Domain Name System): DNS is used to translate names into IP addresses. This allows
+                    users to
+                    access websites using names instead of numerical IP addresses.</li>
+                <li>IPv4-The 4th version of the Internet transfer protocol that can use 32bit (4,294,967,296)
+                    unique
+                    addresses.</li>
+                <li>IPv6-The most recent version of the internet that can hold 128bit addresses with more
+                    security
+                    features.</li>
+                <li>ICMP-The protocol sends error messages related to network conditions.</li>
+                <li>UDP-The connectionless protocol is much less reliable than TCP but is used due to its high
+                    transfer speeds for streaming and other real-time applications.</li>
+                <li>SSH-Used to secure logins and network access while encrypting data.</li>
+            </ul>
+            Internet Protocols (sections for different types)
+
+        </div>
+
+        <div class="grid-item architecture">
+
+            <!-- Web architecture content here -->
+
+
+            <a id="heading4">
+                <h2>Web Application Architechture</h2>
+            </a>
+            <p>Web architecture is the layout of databases, user interfaces, application components, and
+                middleware
+                systems to
+                allow them to work in unison. Users known as web clients make requests for documents, and those
+                requests go from the
+                front end to the backend until the requested information is found and then returned to the user.
+                Software structure
+                refers to the structural design, while software design is in relation to the coding of the
+                software
+                and its
+                functionality.</p>
+
+            <h3>Key Components of Web Application Architecture:</h3>
+            <ul>
+                <li>DNS: The Domain Name System helps with domain name and IP address searching like a phonebook
+                    of
+                    the internet.
+                </li>
+                <li>Load balancer: Distributes tasks across multiple servers to prevent overloading.</li>
+                <li>Web app servers: Processes user requests and returns documents to the browser through a
+                    back-end
+                    structure.</li>
+                <li>Database: Holds data and allows for access, adding, and removal of data.</li>
+                <li>Caching service: Provides storage for data relating to previous searches to improve
+                    searching
+                    time.</li>
+                <li>Job Queue: Delegates jobs to be put into a schedule with those that are not as important
+                    being
+                    put later on the
+                    schedule.</li>
+                <li>Full-Text Service: Allows users to search for text and have the most relevant results
+                    returned.
+                </li>
+                <li>Services: Used to add extra functionality to web applications.</li>
+                <li>Data Warehouse: Used for storing data such as media like photos and videos.</li>
+                <li>CDN: Used to send HTML, CSS, and JavaScript files and images.</li>
+            </ul>
+
+            <h3>Various Architectural Patterns in Web Application Design:</h3>
+            <ul>
+                <li>Client-server architecture is used to divide the application into a client-side and a
+                    server-side. The client
+                    side is the user interface, and the server side is used for data processing.</li>
+                <li>Client-side Programming (Front-end engineering): Front-end developers design and implement
+                    user
+                    interfaces using
+                    HTML, CSS, and JavaScript.</li>
+                <li>Server-Side Programming (Back-end engineering): Back-end developers write code that runs on
+                    the
+                    server, handling
+                    data processing, business logic, and interactions with databases.</li>
+                <li>Full-Stack Engineers: Full-stack developers have expertise in both front-end and back-end
+                    development.</li>
+                <li>Component-based architecture is used to divide an application into three components: model,
+                    view, and
+                    controller.</li>
+                <li>Distributed architecture is used to divide an application into small services that are
+                    independent and
+                    communicate through APIs.</li>
+                <li>Real-time architecture enables real-time, two-way communication between the client and
+                    server.
+                </li>
+                <li>Cloud-based architecture involves writing code as functions triggered by events, managed by
+                    cloud providers.
+                </li>
+                <li>Mobile-focused architecture combines web and mobile apps for fast loading times and offline
+                    capabilities.</li>
+                <li>Microservices: This architectural style involves breaking down the application into smaller,
+                    loosely coupled
+                    services that can be developed, deployed, and scaled independently.</li>
+            </ul>
+            Web architecture
+
+        </div>
+
+
+
+        <div class="grid-item client-side">
+
+            <!-- Client side content here -->
+            <a id="heading5">
+                <h2>Client side</h2>
+            </a>
+            <p>Client-side computers request information while server-side computers serve the information
+                (Castillo, 2022).</p>
+
+            <p><strong>Client-Side Engineering:</strong> Relates to how software is designed to be easy to use
+                and
+                visually
+                appealing. It uses its own languages such as HTML, CSS, and JavaScript. It affects what the
+                users
+                see and interact
+                with. It usually refers to the home pages of websites.</p>
+
+
+        </div>
+
+        <div class="grid-item server-side">
+
+            <!-- Server-side scripting content here -->
+
+
+            <a id="heading6">
+                <h2>Server-side Engineering</h2>
+            </a>
+            <p><strong>Server-Side Engineering:</strong> Relates to how the backend is designed to perform
+                efficiently and
+                functionally. It has its own languages such as Python, PHP, Java, C#. It affects how the
+                application
+                works and how
+                it is coded. The server-side code is responsible for data management and security.</p>
+            Server-side scripting
+
+        </div>
+
+        <div class="grid-item comparison">
+
+            <!-- Comparison Table content here -->
+            <a id="heading6">
+                <h2>Comparison Table</h2>
+            </a>
+            <table border="1" align="center">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Client-Side Engineering</th>
+                    <th>Server-Side Engineering</th>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>User’s device - browser</td>
+                    <td>Server</td>
+                </tr>
+                <tr>
+                    <td>Languages</td>
+                    <td>HTML, CSS, JavaScript</td>
+                    <td>Python, PHP - they are backend languages</td>
+                </tr>
+                <tr>
+                    <td>Interaction</td>
+                    <td>Handles user input interactions</td>
+                    <td>Request processing and database communication</td>
+                </tr>
+                <tr>
+                    <td>Data Storage</td>
+                    <td>Limited to things such as cookies</td>
+                    <td>Data is stored and managed in a database</td>
+                </tr>
+                <tr>
+                    <td>Accessibility</td>
+                    <td>Visual representation</td>
+                    <td>Manages data availability</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Basic - ensures that user input is valid</td>
+                    <td>Security protocols - authentication and data protection</td>
+                </tr>
+                <tr>
+                    <td>Responsibility</td>
+                    <td>UI, interactions, visuals</td>
+                    <td>UI, interactions, visuals</td>
+                </tr>
+            </table>
+
+        </div>
+
+
+
+
+
+
+        <div class="grid-item footer">
+            <footer class="footer" style="margin: 0;">
+                <!-- Footer content here -->
+                <p>2023 Web Programming Assignment </p>
+                <p style="font-size: smaller;">BY: Sandhyaa Matt Ryan</p>
+
+            </footer>
+        </div>
+
+    </div>
+
+
+    <script>
+        /*Allows background change on click of blackhole*/
+        const blackhole = document.querySelector('.blackhole');
+        const body = document.querySelector('body');
+        blackhole.onclick = function () {
+            body.classList.toggle('dark')
+        }
+
+    </script>
+</body>
+
+</html>
